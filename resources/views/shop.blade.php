@@ -4,13 +4,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Shop</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="{{asset('/')}}/style.css">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
    
     </head>
     <body>
@@ -47,7 +50,7 @@
                     <form class="form-inline  my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                      </form>
+                    </form>
                 </div>
               
                 <div class="product-items d-flex justify-content-start align-item-center flex-wrap" style="margin: 20px 0px">
@@ -56,7 +59,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-primary">Add To Cart</a>
                         </div>
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                   </nav>
            </div>
        
-           {{-- POS section --}}
+           {{-- Cart section --}}
            <div class="col-md-4">
             <div class="card" style="width: 100%">
                <form action="">
