@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductVariationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return view('app');
 });
-Route::get('product-add/', [ProductController::class, "index"])->name('product.add');
+Route::get('product/', [ProductController::class, "index"])->name('product.add');
 Route::get('shop/', [ProductController::class, "shopPageIndex"])->name('shop');
+
+// product variations added
+Route::post('product-unit/add', [ProductVariationController::class, "store"])->name('product-unit.store');
+Route::post('product-unit-value/add', [ProductVariationController::class, "productUnitValueStore"])->name('product-unit-value.store');
+
+Route::get('product-value-get-unit-wise/{id}', [ProductVariationController::class, "productValueGetUnitWise"]);

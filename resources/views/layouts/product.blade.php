@@ -54,10 +54,11 @@
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <select name="" id="prudctUnit" class="custom-select prudctUnit">
-                                                    <option value="" disabled>Product Unit Select</option>
-                                                    <option value="">1</option>
-                                                    <option value="">2</option>
-                                                    <option value="">3</option>
+                                                    <option value="" >-- Select Product Unit --</option>
+                                                    @foreach ($variations as $index => $product_unit)
+                                                        <option value="{{ $product_unit->id }}">{{ $product_unit->key }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
 
                                             </div>
@@ -74,10 +75,8 @@
                                         <div class="col-md-10">
                                             <select name="" id="prudctUnitValue"
                                                 class="custom-select prudctUnitValue">
-                                                <option value="" disabled>Product Unit Value Select</option>
-                                                <option value="">2</option>
-                                                <option value="">8</option>
-                                                <option value="">7</option>
+                                                
+                                                
                                             </select>
 
                                         </div>
@@ -110,43 +109,67 @@
     <div class="modal fade" id="productUnit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Unit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+            <form method="post" action="{{ route('product-unit.store') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Product Unit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Unit Key</label>
+                            <input type="text" class="form-control" name="product_unit"
+                                placeholder="product unit key">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+            </form>
         </div>
+    </div>
     </div>
 
     <!-- Product Unit Value Modal -->
     <div class="modal fade" id="productUnitValue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Product Unit Value </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+            <form method="post" action="{{ route('product-unit-value.store') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Product Unit Value</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Unit</label>
+                            <select name="product_unit_id" id="" class="custom-select">
+                                <option value="" selected disabled>Product unit</option>
+                                @foreach ($variations as $index => $product_unit)
+                                    <option value="{{ $product_unit->id }}">{{ $product_unit->key }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Unit Value</label>
+                            <input type="text" class="form-control" name="product_unit_value[]"
+                                placeholder="product unit value">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+            </form>
         </div>
     </div>
+
 @endsection

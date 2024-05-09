@@ -44,12 +44,37 @@
 
     <script>
         $(document).ready(function() {
-            $('.prudctUnit').select2({
-                multiple: true
-            });
+            $('.prudctUnit').select2();
 
             $('.prudctUnitValue').select2({
                 multiple: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#prudctUnit').change(function() {
+                const productUnitId = $(this).val();
+
+                $.ajax({
+                    url: 'product-value-get-unit-wise/' + productUnitId,
+                    method: 'GET',
+                    success: function(response) {
+                        const arrayData = response.data
+                        const selectElement = $('#prudctUnitValue');
+                        selectElement.empty();
+                                                
+                        selectElement.append(`<option value="" disabled>--Select Product Unit Value--</option>`);
+                        $.each(arrayData, function(index, unit) {
+                            selectElement.append(`<option value="${unit.id}">${unit.value}</option>`);
+                        });
+
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                });
             });
         });
     </script>
