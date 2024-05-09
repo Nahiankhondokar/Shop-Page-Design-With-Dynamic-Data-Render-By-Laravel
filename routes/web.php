@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('product');
+Route::get('/', function(){
+    return view('app');
 });
+Route::get('product-add/', [ProductController::class, "index"])->name('product.add');
+Route::get('shop/', [ProductController::class, "shopPageIndex"])->name('shop');
