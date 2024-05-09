@@ -20,8 +20,8 @@ class ProductController extends Controller
         return view('layouts.shop');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+        dd($request->all());
     }
 }

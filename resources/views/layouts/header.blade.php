@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link font-weight-bold text-white" href="{{route('product.add')}}">Product</a>
+                    <a class="nav-link font-weight-bold text-white" href="{{route('product')}}">Product</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link font-weight-bold text-white" href="{{route('shop')}}">Shop</a>

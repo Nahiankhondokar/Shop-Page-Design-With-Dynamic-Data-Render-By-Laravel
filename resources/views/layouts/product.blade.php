@@ -3,7 +3,8 @@
     {{-- Product form --}}
     <section class="container">
         <div class="product-add-form my-5">
-            <form action="">
+            <form action="{{route('product.add')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card" width="75">
@@ -12,33 +13,33 @@
                                 <br>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
-                                    <input type="text" class="form-control" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" aria-describedby="emailHelp" name="name">
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your email
                                         with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product SKU</label>
-                                    <input type="text" class="form-control" id="">
+                                    <input type="text" class="form-control" id="" name="sku">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Selling Price</label>
-                                    <input type="number" class="form-control" id="">
+                                    <input type="number" class="form-control" id="" name="selling_price">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Purchase Price</label>
-                                    <input type="number" class="form-control" id="">
+                                    <input type="number" class="form-control" id="" name="regular_price">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Discount (%)</label>
-                                    <input type="number" class="form-control" id="">
+                                    <input type="number" class="form-control" id="" name="discout">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tax (%)</label>
-                                    <input type="number" class="form-control" id="">
+                                    <input type="number" class="form-control" id="" name="tax">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product image</label>
-                                    <input type="file" class="form-control" id="">
+                                    <input type="file" class="form-control" id="" name="image">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +54,7 @@
                                     <div class="product-unit-details ">
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <select name="" id="prudctUnit" class="custom-select prudctUnit">
+                                                <select name="product_unit" id="prudctUnit" class="custom-select prudctUnit">
                                                     <option value="" >-- Select Product Unit --</option>
                                                     @foreach ($variations as $index => $product_unit)
                                                         <option value="{{ $product_unit->id }}">{{ $product_unit->key }}
@@ -73,7 +74,7 @@
                                     <label for="exampleInputEmail1">Product Unit Value</label>
                                     <div class="row">
                                         <div class="col-md-10">
-                                            <select name="" id="prudctUnitValue"
+                                            <select name="product_unit_value[]" id="prudctUnitValue"
                                                 class="custom-select prudctUnitValue">
                                                 
                                                 
@@ -88,7 +89,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Unit Value Price </label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="variat_price[]">
                                     <small id="emailHelp" class="form-text text-muted">(Ex: 100, 200, 300)</small>
                                 </div>
                             </div>

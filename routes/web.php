@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function(){
     return view('app');
 });
-Route::get('product/', [ProductController::class, "index"])->name('product.add');
+Route::get('product/', [ProductController::class, "index"])->name('product');
+Route::post('product/add', [ProductController::class, "store"])->name('product.add');
 Route::get('shop/', [ProductController::class, "shopPageIndex"])->name('shop');
 
 // product variations added
