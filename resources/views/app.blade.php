@@ -66,13 +66,13 @@
                         selectElement.empty();
                                                 
                         selectElement.append(`<option value="" disabled>--Select Product Unit Value--</option>`);
-                        $.each(arrayData, function(index, unit) {
-                            selectElement.append(`<option value="${unit.id}">${unit.value}</option>`);
+                        $.each(arrayData, function(index, data) {
+                            selectElement.append(`<option value="${data.value}">${data.value}</option>`);
                         });
 
                     },
                     error: function(xhr, status, error) {
-
+                        alert(error);
                     }
                 });
             });

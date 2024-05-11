@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('sku');
-            $table->string('selling_price');
+            $table->string('selling_price')->nullable();
             $table->string('regular_price');
             $table->string('tax')->nullable();
             $table->string('discount')->nullable();

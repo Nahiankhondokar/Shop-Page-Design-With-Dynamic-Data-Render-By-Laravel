@@ -13,13 +13,17 @@
                                 <br>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
-                                    <input type="text" class="form-control" aria-describedby="emailHelp" name="name">
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email
-                                        with anyone else.</small>
+                                    <input type="text" class="form-control" aria-describedby="emailHelp" name="product_name">
+                                    @error('product_name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product SKU</label>
                                     <input type="text" class="form-control" id="" name="sku">
+                                    @error('sku')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Selling Price</label>
@@ -28,10 +32,13 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Purchase Price</label>
                                     <input type="number" class="form-control" id="" name="regular_price">
+                                    @error('regular_price')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Discount (%)</label>
-                                    <input type="number" class="form-control" id="" name="discout">
+                                    <input type="number" class="form-control" id="" name="discount">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tax (%)</label>
@@ -49,9 +56,14 @@
                             <div class="card-body">
                                 <h4>Product Variants Select</h4>
                                 <br>
+                                @if (\Session::has('variants'))
+                                    <div class="alert alert-error">
+                                        <div class="text-danger">{!! \Session::get('variants') !!}</div>
+                                    </div>
+                                @endif
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Unit</label>
-                                    <div class="product-unit-details ">
+                                    <div class="product-unit-details">
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <select name="product_unit" id="prudctUnit" class="custom-select prudctUnit">
@@ -77,7 +89,6 @@
                                             <select name="product_unit_value[]" id="prudctUnitValue"
                                                 class="custom-select prudctUnitValue">
                                                 
-                                                
                                             </select>
 
                                         </div>
@@ -89,7 +100,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Unit Value Price </label>
-                                    <input type="text" class="form-control" name="variat_price[]">
+                                    <input type="text" class="form-control" name="variat_price">
                                     <small id="emailHelp" class="form-text text-muted">(Ex: 100, 200, 300)</small>
                                 </div>
                             </div>
