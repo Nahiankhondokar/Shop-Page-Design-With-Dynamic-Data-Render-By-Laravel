@@ -42,6 +42,13 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">Quantity</label>
+                                    <input type="number" class="form-control" id="" name="quantity">
+                                    @error('quantity')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Discount (%)</label>
                                     <input type="number" class="form-control" id="" name="discount">
                                 </div>

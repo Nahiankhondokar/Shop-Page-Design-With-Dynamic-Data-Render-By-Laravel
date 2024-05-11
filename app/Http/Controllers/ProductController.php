@@ -47,6 +47,7 @@ class ProductController extends Controller
             $product->regular_price = $price; 
             $product->discount      = $discountAmount; 
             $product->tax           = $taxAmount; 
+            $product->quantity      = $request->quantity; 
 
             if ($request->hasFile('image')) {
                 $img = $request->file('image');

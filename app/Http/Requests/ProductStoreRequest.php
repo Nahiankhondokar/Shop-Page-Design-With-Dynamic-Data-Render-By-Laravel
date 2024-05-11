@@ -25,6 +25,7 @@ class ProductStoreRequest extends FormRequest
             'product_name'      => ["required"],
             'sku'               => ["required"],
             'regular_price'     => ["required"],
+            'quantity'          => ["required"],
         ];
     }
 }
