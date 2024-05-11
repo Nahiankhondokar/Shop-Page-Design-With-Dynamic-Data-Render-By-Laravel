@@ -74,23 +74,14 @@
                             </table>
                             <hr>
                             <div class="product-price-details">
-                                <div class="sub-total" style="
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-between;
-                                    font-weight: 700;
-                                ">
-                                    <div class="title">Sub Total: </div>
-                                    <div class="amount"></div>
-                                </div>
                                 <div class="product-discount" style="
                                     display: flex;
                                     align-items: center;
                                     justify-content: space-between;
                                     font-weight: 700;
                                 ">
-                                    <div class="title">Discount: </div>
-                                    <div class="amount"></div>
+                                    <div class="title">Discount <small>(already minus)</small>: </div>
+                                    <div class="amount">00</div>
                                 </div>
                                 <div class="product-tax" style="
                                     display: flex;
@@ -98,8 +89,17 @@
                                     justify-content: space-between;
                                     font-weight: 700;
                                 ">
-                                    <div class="title">Tax: </div>
-                                    <div class="amount"></div>
+                                    <div class="title">Tax <small>(already minus)</small> : </div>
+                                    <div class="amount">00</div>
+                                </div>
+                                <div class="sub-total" style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    font-weight: 700;
+                                ">
+                                    <div class="title">Total: </div>
+                                    <div class="amount">00</div>
                                 </div>
                             </div>
                         </div>

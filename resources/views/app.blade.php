@@ -69,14 +69,12 @@
                         $.each(arrayData, function(index, data) {
                             selectElement.append(`<option value="${data.value}">${data.value}</option>`);
                         });
-
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
                     }
                 });
             });
-
 
             // Add to cart
             $('.addToCartBtn').click(function() {
@@ -119,9 +117,7 @@
                             </div>
                         </td>
                         <td style="width: 20%">
-                            <form action="">
-                                <input type="number" name="" id="" style="width: 70%">
-                            </form>
+                            <input type="number" name="quantity" value="1" data-amount="${(data.selling_price) ? data.selling_price : data.regular_price}" id="" style="width: 70%">                       
                         </td>
                         <td style="width: 20%; font-weight: bold">
                         $ ${(data.selling_price) ? data.selling_price : data.regular_price}
@@ -129,17 +125,25 @@
                     </tr>`);
                 });
 
+                // product amount update based on quantity
+                $(document).on('input', 'input[name="quantity"]', function() {
+                    let amount = $(this).data('amount');
+                    subTotal += parseFloat(amount);
+                    $('.sub-total .amount').text('$'+ subTotal.toFixed(2));
+                });
+
                 // pricing amounts show
-                $('.sub-total .amount').text('$'+ subTotal);
-                $('.product-discount .amount').text('$'+ discountAmount);
-                $('.product-tax .amount').text('$'+ taxAmount);
-                
+                $('.sub-total .amount').text('$'+ subTotal.toFixed(2));
+                $('.product-discount .amount').text('$'+ discountAmount.toFixed(2));
+                $('.product-tax .amount').text('$'+ taxAmount.toFixed(2));
             });
-
-
         });
 
 
+        // localstorage data will be empty after reload the page.
+        window.addEventListener('beforeunload', function(event) {
+            localStorage.clear();
+        });
 
     </script>
 </body>
