@@ -14,13 +14,12 @@ class ProductController extends Controller
     public function index()
     {
         $variations = ProductUnit::with('productUnitValue')->orderByDesc('id')->get();
-        // dd($variations->toArray());
         return view('layouts.product', compact('variations'));
     }
 
     public function shopPageIndex()
     {
-        $products = Product::paginate(10);
+        $products = Product::orderByDesc('id')->paginate(10);
         return view('layouts.shop', [
             'products'  => $products
         ]);
@@ -28,15 +27,26 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-        // dd($request->all() );
         return DB::transaction(function () use ($request){
+
+            // discount calculation
+            $discountAmount = $request->regular_price * $request->discount / 100;
+            $taxAmount = $request->regular_price * $request->tax / 100;
+
+            // price calculation
+            if(!$request->selling_price){
+                $price = ($request->regular_price - $discountAmount) - $taxAmount;
+            }else {
+                $price = $request->regular_price;
+            }
+
             $product = new Product();
             $product->product_name  = $request->product_name; 
             $product->sku           = $request->sku; 
             $product->selling_price = $request->selling_price; 
-            $product->regular_price = $request->regular_price; 
-            $product->discount       = $request->discount; 
-            $product->tax           = $request->tax; 
+            $product->regular_price = $price; 
+            $product->discount      = $discountAmount; 
+            $product->tax           = $taxAmount; 
 
             if ($request->hasFile('image')) {
                 $img = $request->file('image');
@@ -52,7 +62,6 @@ class ProductController extends Controller
             // product variation manage
             if($request->product_unit){
                 if($request->product_unit_value && $request->variat_price){
-                    $productUnit = ProductUnit::find($request->product_unit);
                     $removeExtraSpace = str_replace(' ', '', $request->variat_price);
                     $priceArray = explode(',', $removeExtraSpace);
 
