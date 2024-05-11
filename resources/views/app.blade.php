@@ -72,11 +72,64 @@
 
                     },
                     error: function(xhr, status, error) {
-                        alert(error);
+                        console.log(error);
                     }
                 });
             });
+
+
+            // Add to cart
+            $('.addToCartBtn').click(function() {
+                const cartArr = [];
+                const productData = $(this).data('product');
+                const cartItems = JSON.parse(localStorage.getItem('cart'));
+                if(!cartItems){
+                    console.log('not created');
+                    cartArr.push(productData);
+                    localStorage.setItem('cart', JSON.stringify(cartArr));
+                }else {
+                    cartItems.push(productData)
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                }
+
+                const cartItemsDisplay = $('#cartItemLoad');
+                const againGetCartItem = JSON.parse(localStorage.getItem('cart'));
+                cartItemsDisplay.empty();
+
+                $.each(againGetCartItem, function(index, data) {
+                    cartItemsDisplay.append(`<tr>
+                                        <td style="width: 55%">
+                                            <div class="product-details">
+                                                <img 
+                                                    style="width: 40px;
+                                                    height: 40px;
+                                                    border-radius: 5px;"
+                                                    src="${data.image}"
+                                                    alt="">
+                                                <p class="font-weight-bold" style="padding: 0px; margin:0px;">${data.product_name}
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td style="width: 20%">
+                                            <form action="">
+                                                <input type="number" name="" id="" style="width: 70%">
+                                            </form>
+                                        </td>
+                                        <td style="width: 20%; font-weight: bold">
+                                        $ ${(data.selling_price) ? data.selling_price : data.regular_price}
+                                        </td>
+                                    </tr>`);
+                        });
+
+               
+                
+            });
+
+
         });
+
+
+
     </script>
 </body>
 

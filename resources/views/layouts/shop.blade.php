@@ -29,12 +29,17 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">{{$product->product_name}}</h5>
                             <div class="product-price" style="display: flex; gap: 5px; justify-content:center;">
-                                <p class="card-text font-weight-bold" >$ {{$product->regular_price}}</p>
                                 @if($product->selling_price)
-                                    <p class="card-text font-weight-bold" style="color: #d5d5d5;"  ><del>$ {{$product->selling_price}}</del></p>
+                                <p class="card-text font-weight-bold" >$ {{$product->selling_price}}</p>
+                                @endif
+
+                                @if($product->selling_price)
+                                    <p class="card-text font-weight-bold" style="color: #d5d5d5;"><del>$ {{$product->regular_price}}</del></p>
+                                @else 
+                                    <p class="card-text font-weight-bold" >$ {{$product->regular_price}}</p>
                                 @endif
                             </div>
-                            <a href="#" class="btn btn-primary d-block" style="background: #6ac88a; border:none;">Add To Cart</a>
+                            <a href="javascript:void(0)" class="btn btn-primary d-block addToCartBtn" style="background: #6ac88a; border:none;" data-product="{{$product}}" id="">Add To Cart</a>
                         </div>
                     </div>
                    @endforeach
@@ -61,24 +66,8 @@
                                         <th scope="col">Price</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 55%">
-                                            <div class="product-details">
-                                                <img width="50"
-                                                    src="https://t4.ftcdn.net/jpg/00/47/30/15/360_F_47301594_mLvjoHeB4UvNvZ0zOotvrhPfqLQlIDRv.jpg"
-                                                    alt="">
-                                                <p class="font-weight-bold" style="padding: 0px; margin:0px;">Product Name
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <form action="">
-                                                <input type="number" name="" id="" style="width: 70%">
-                                            </form>
-                                        </td>
-                                        <td style="width: 20%; font-weight: bold">$ 500</td>
-                                    </tr>
+                                <tbody id="cartItemLoad">
+                                   
                                 </tbody>
                             </table>
                         </div>
