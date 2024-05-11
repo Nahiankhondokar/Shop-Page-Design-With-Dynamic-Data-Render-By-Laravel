@@ -57,7 +57,7 @@ class ProductController extends Controller
                     foreach($request->product_unit_value as $index => $value){
                         $variations = new ProductVariations();
                         $variations->product_id = $product->id;
-                        $variations->variant = $productUnit->key.'-'.$value;
+                        $variations->variant = $value;
                         $variations->price = $priceArray[$index] ?? 00;
                         $variations->qty = $request->variant_qty ?? 0;
                         $variations->save();
@@ -67,7 +67,7 @@ class ProductController extends Controller
                 }
             }
 
-            return redirect()->route('product');
+            return redirect()->route('product')->with('product', 'Produdct added successfully');
         });
     }
 }

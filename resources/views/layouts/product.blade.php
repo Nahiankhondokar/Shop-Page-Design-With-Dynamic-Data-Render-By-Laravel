@@ -5,6 +5,11 @@
         <div class="product-add-form my-5">
             <form action="{{route('product.add')}}" method="post" enctype="multipart/form-data">
                 @csrf
+                @if (\Session::has('product'))
+                    <div class="alert alert-success">
+                        <div class="text-success">{!! \Session::get('product') !!}</div>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card" width="75">
