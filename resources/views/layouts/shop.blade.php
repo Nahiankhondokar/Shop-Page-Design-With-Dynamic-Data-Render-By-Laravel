@@ -14,28 +14,38 @@
 
                 <div class="product-items d-flex justify-content-start align-item-center flex-wrap"
                     style="margin: 20px 0px">
-                    <div class="card" style="width: 18rem; margin: 10px 5px;">
-                        <img src="https://images.pexels.com/photos/335257/pexels-photo-335257.jpeg?cs=srgb&dl=pexels-eprism-studio-108171-335257.jpg"
-                            class="card-img-top" alt="...">
+                   @foreach($products as $product)
+                    <div class="card" style="width: 15rem; height: 22rem; margin: 10px 5px;">
+                       @if($product->image)
+                            <img src="{{$product->image}}" class="card-img-top" alt="product" style="    width: 100%;
+                            height: 200px;
+                            object-fit: cover;">
+                       @else 
+                        <img src="{{asset('/')}}media/no-img.jpg" class="card-img-top" alt="product" style="    width: 100%;
+                        height: 200px;
+                        object-fit: cover;">
+                       @endif
+                            
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                the card's content.</p>
-                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                            <h5 class="card-title text-center">{{$product->product_name}}</h5>
+                            <div class="product-price" style="display: flex; gap: 5px; justify-content:center;">
+                                <p class="card-text font-weight-bold" >$ {{$product->regular_price}}</p>
+                                @if($product->selling_price)
+                                    <p class="card-text font-weight-bold" style="color: #d5d5d5;"  ><del>$ {{$product->selling_price}}</del></p>
+                                @endif
+                            </div>
+                            <a href="#" class="btn btn-primary d-block" style="background: #6ac88a; border:none;">Add To Cart</a>
                         </div>
                     </div>
+                   @endforeach
                 </div>
 
                     {{-- Pagination section --}}
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
+                @if ($products->hasPages())
+                    <div class="pagination-wrapper">
+                        {{ $products->links() }}
+                    </div>
+                @endif
             </div>
 
                 {{-- Cart section --}}

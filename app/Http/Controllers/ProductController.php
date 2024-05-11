@@ -20,8 +20,10 @@ class ProductController extends Controller
 
     public function shopPageIndex()
     {
-        
-        return view('layouts.shop');
+        $products = Product::paginate(10);
+        return view('layouts.shop', [
+            'products'  => $products
+        ]);
     }
 
     public function store(ProductStoreRequest $request)
@@ -38,7 +40,7 @@ class ProductController extends Controller
 
             if ($request->hasFile('image')) {
                 $img = $request->file('image');
-                $unique = md5(time().rand()).$img->getClientOriginalExtension();
+                $unique = md5(time().rand()).'.'.$img->getClientOriginalExtension();
                 $img->move(public_path('media/product/image/'), $unique);
                 $filePath = 'media/product/image/'.$unique;
             }
