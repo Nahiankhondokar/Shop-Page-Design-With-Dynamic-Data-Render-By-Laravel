@@ -76,20 +76,9 @@
                 });
             });
 
-            // Add to cart
-            $('.addToCartBtn').click(function() {
-                const cartArr = [];
-                const productData = $(this).data('product');
-                const cartItems = JSON.parse(localStorage.getItem('cart'));
-                if(!cartItems){
-                    console.log('not created');
-                    cartArr.push(productData);
-                    localStorage.setItem('cart', JSON.stringify(cartArr));
-                }else {
-                    cartItems.push(productData)
-                    localStorage.setItem('cart', JSON.stringify(cartItems));
-                }
 
+            function displayCartItems()
+            {
                 const cartItemsDisplay = $('#cartItemLoad');
                 const againGetCartItem = JSON.parse(localStorage.getItem('cart'));
                 cartItemsDisplay.empty();
@@ -99,11 +88,13 @@
                 let discountAmount = 0;
 
                 $.each(againGetCartItem, function(index, data) {
-                    subTotal += parseFloat((data.selling_price) ? data.selling_price : data.regular_price);
+                    let productPrice = (data.selling_price) ? data.selling_price : data.regular_price;
+                    subTotal += parseFloat(productPrice);
                     taxAmount += parseFloat(data.tax);
                     discountAmount += parseFloat(data.discount);
+                    let productQty =data.quantity
 
-                    cartItemsDisplay.append(`
+                     cartItemsDisplay.append(`
                     <tr>
                         <td style="width: 55%">
                             <div class="product-details">
@@ -117,28 +108,82 @@
                             </div>
                         </td>
                         <td style="width: 20%">
-                            <input type="number" name="quantity" value="1" data-amount="${(data.selling_price) ? data.selling_price : data.regular_price}" id="" style="width: 70%">                       
+                            <input type="number" name="quantity" value="${productQty}" data-amount="${productPrice}"  data-id="${data.id}" style="width: 70%">  
+                            <input type="number" name="product_id[]" hidden value="${data.id}">                 
                         </td>
                         <td style="width: 20%; font-weight: bold">
-                        $ ${(data.selling_price) ? data.selling_price : data.regular_price}
+                        $ ${productPrice}
+                        </td>
+                        <td style="width: 20%">
+                            <a href="javascript:void(0)" class="btn btn-danger btn-sm cartItemDelete" data-id="${data.id}">Remove</a>              
                         </td>
                     </tr>`);
                 });
 
-                // product amount update based on quantity
-                $(document).on('input', 'input[name="quantity"]', function() {
-                    let amount = $(this).data('amount');
-                    subTotal += parseFloat(amount);
-                    $('.sub-total .amount').text('$'+ subTotal.toFixed(2));
-                });
 
                 // pricing amounts show
-                $('.sub-total .amount').text('$'+ subTotal.toFixed(2));
-                $('.product-discount .amount').text('$'+ discountAmount.toFixed(2));
-                $('.product-tax .amount').text('$'+ taxAmount.toFixed(2));
+                $('.sub-total input.amount').val('$'+ subTotal.toFixed(2));
+                $('.product-discount input.amount').val('$'+ discountAmount.toFixed(2));
+                $('.product-tax input.amount').val('$'+ taxAmount.toFixed(2));
+            }
+
+            // Add to cart
+            $('.addToCartBtn').click(function() {
+                $(".customer-details" ).removeClass('d-none');
+                const cartArr = [];
+                const productData = $(this).data('product');
+                const cartItems = JSON.parse(localStorage.getItem('cart'));
+
+                if(!cartItems){
+                    console.log('not created');
+                    cartArr.push(productData);
+                    localStorage.setItem('cart', JSON.stringify(cartArr));
+                }else {
+                    cartItems.push(productData)
+                    localStorage.setItem('cart', JSON.stringify(cartItems));
+                }
+                displayCartItems();
             });
+
+            // delete cart Item
+            $(document).on('click', '.cartItemDelete', function(){
+                let delId = $(this).data('id');
+                removeCartItem(delId);
+            });
+
+             // Pricing cart Item
+             $(document).on('change', 'input[name="quantity"]', function(){
+                let id = $(this).data('id');
+                let currentQty = $(this).val();
+                let perProductAmount = $(this).data('amount');
+                
+                let dataArray = JSON.parse(localStorage.getItem('cart'));
+                const indexToUpdate = dataArray.findIndex(item => item.id == id);
+                let productPrice = perProductAmount * currentQty;
+
+                if (indexToUpdate !== -1) {
+                    dataArray[indexToUpdate].selling_price = productPrice;
+                    dataArray[indexToUpdate].quantity = currentQty;
+                }
+
+                localStorage.setItem('cart', JSON.stringify(dataArray));
+                displayCartItems();
+            });
+
+            // remove cart item
+            function removeCartItem(delId){
+                const cartItems = JSON.parse(localStorage.getItem('cart'));
+                let delData = cartItems.filter(item => item.id !== delId);
+                localStorage.removeItem('cart');
+                localStorage.setItem('cart', JSON.stringify(delData));
+                
+                displayCartItems();
+            }
+
+            
         });
 
+        
 
         // localstorage data will be empty after reload the page.
         window.addEventListener('beforeunload', function(event) {

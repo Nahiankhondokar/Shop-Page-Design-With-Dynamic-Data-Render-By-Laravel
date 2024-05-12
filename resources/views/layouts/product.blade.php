@@ -34,6 +34,7 @@
                                     <label for="exampleInputPassword1">Selling Price</label>
                                     <input type="number" class="form-control" id="" name="selling_price">
                                 </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Purchase Price</label>
                                     <input type="number" class="form-control" id="" name="regular_price">

@@ -39,7 +39,7 @@
                                     <p class="card-text font-weight-bold" >$ {{$product->regular_price}}</p>
                                 @endif
                             </div>
-                            <a href="javascript:void(0)" class="btn btn-primary d-block addToCartBtn" style="background: #6ac88a; border:none;" data-product="{{$product}}" id="">Add To Cart</a>
+                            <a href="javascript:void(0)" class="btn btn-primary d-block addToCartBtn" style="background: #6ac88a; border:none;" data-product="" id="">Add To Cart</a>
                         </div>
                     </div>
                    @endforeach
@@ -56,7 +56,8 @@
                 {{-- Cart section --}}
             <div class="col-md-4">
                 <div class="card" style="width: 100%">
-                    <form action="">
+                    <form action="{{route('order.store')}}" method="POST">
+                        @csrf
                         <div class="card-body">
                             <table class="table">
                                 <thead>
@@ -64,6 +65,7 @@
                                         <th scope="col">Item</th>
                                         <th scope="col">QTY</th>
                                         <th scope="col">Price</th>
+                                        <th scope="col">Remove</th>
                                     </tr>
                                 </thead>
                                 <tbody id="cartItemLoad">
@@ -81,16 +83,26 @@
                                     font-weight: 700;
                                 ">
                                     <div class="title">Discount <small>(already minus)</small>: </div>
-                                    <div class="amount">00</div>
+                                    <input type="text" readonly value="00" name="discount" class="amount" style="
+                                        border: none;
+                                        text-align: right;
+                                        font-weight: 700;
+                                        outline: none;
+                                    ">
                                 </div>
                                 <div class="product-tax" style="
                                     display: flex;
                                     align-items: center;
                                     justify-content: space-between;
                                     font-weight: 700;
-                                ">
+                                    ">
                                     <div class="title">Tax <small>(already minus)</small> : </div>
-                                    <div class="amount">00</div>
+                                    <input type="text" readonly value="00" name="tax" class="amount" style="
+                                    border: none;
+                                    text-align: right;
+                                    font-weight: 700;
+                                    outline: none;
+                                    ">
                                 </div>
                                 <div class="sub-total" style="
                                     display: flex;
@@ -99,8 +111,23 @@
                                     font-weight: 700;
                                 ">
                                     <div class="title">Total: </div>
-                                    <div class="amount">00</div>
+                                    <input type="text" readonly value="00" name="amount" class="amount" style="
+                                    border: none;
+                                    text-align: right;
+                                    outline: none;
+                                    font-weight: 700;">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="customer-details d-none ml-2 mr-2">
+                            <div class="form-group">
+                                <input type="text" placeholder="Customer Name" class="form-control" name="customer_name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Customer Address" class="form-control" name="customer_address">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" placeholder="Phone" class="form-control" name="phone">
                             </div>
                         </div>
                         <div class="card-footer">

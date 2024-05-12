@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use App\Models\ProductVariations;
@@ -21,7 +22,7 @@ class ProductController extends Controller
     {
         $products = Product::orderByDesc('id')->paginate(10);
         return view('layouts.shop', [
-            'products'  => $products
+            'products'  => ProductResource::collection($products)
         ]);
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductVariationController;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,4 @@ Route::post('product-unit/add', [ProductVariationController::class, "store"])->n
 Route::post('product-unit-value/add', [ProductVariationController::class, "productUnitValueStore"])->name('product-unit-value.store');
 
 Route::get('product-value-get-unit-wise/{id}', [ProductVariationController::class, "productValueGetUnitWise"]);
+Route::post('order-store/', [OrderController::class, "store"])->name('order.store');
