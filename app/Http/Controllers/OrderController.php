@@ -41,4 +41,10 @@ class OrderController extends Controller
             return redirect()->back()->with('ordre', 'order created successfully');
         });
     }
+
+    public function delete($id)
+    {
+        Order::find($id)->delete();
+        return redirect()->back();
+    }
 }

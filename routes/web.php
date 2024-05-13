@@ -23,6 +23,7 @@ Route::get('product/', [ProductController::class, "index"])->name('product');
 Route::get('product-list/', [ProductController::class, "productList"])->name('product.list');
 Route::post('product/add', [ProductController::class, "store"])->name('product.add');
 Route::post('product-search/', [ProductController::class, "search"])->name('product.search');
+Route::get('product-delete/{id}', [ProductController::class, "delete"])->name('product.delete');
 Route::get('shop/', [ProductController::class, "shopPageIndex"])->name('shop');
 
 // product variations added
@@ -32,3 +33,4 @@ Route::get('product-value-get-unit-wise/{id}', [ProductVariationController::clas
 
 Route::post('order-store/', [OrderController::class, "store"])->name('order.store');
 Route::get('order-list/', [OrderController::class, "index"])->name('order.list');
+Route::get('order-delete/{id}', [OrderController::class, "delete"])->name('order.delete');

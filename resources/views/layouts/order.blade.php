@@ -33,7 +33,7 @@
                         <td>{{$order->tax}}</td>
                         <td>{{$order->orderDetails[$index]->product_qty}}</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-danger">Remove</a>
+                            <a href="{{route('order.delete', $order->id)}}" class="btn btn-sm btn-danger">Remove</a>
                         </td>
                       </tr>
                       @endforeach

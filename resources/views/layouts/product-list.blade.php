@@ -34,7 +34,7 @@
                             <td>{{$product->tax}}</td>
                             <td>{{$product->quantity}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-danger">Remove</a>
+                                <a href="{{route('product.delete', $product->id)}}" class="btn btn-sm btn-danger">Remove</a>
                             </td>
                         </tr>
                       @endforeach

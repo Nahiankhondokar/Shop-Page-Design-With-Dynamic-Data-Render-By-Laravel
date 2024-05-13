@@ -114,4 +114,13 @@ class ProductController extends Controller
             'products'  => $products
         ]);
     }
+
+    public function delete($id)
+    {
+        $product = Product::find($id);
+        @unlink('media/product/image/'.$product->image);
+        $product->delete();
+        
+        return redirect()->back();
+    }
 }
