@@ -17,6 +17,12 @@ class ProductController extends Controller
         return view('layouts.product', compact('variations'));
     }
 
+    public function productList()
+    {
+        $products = Product::with('productVariation')->orderByDesc('id')->paginate(10);
+        return view('layouts.product-list', compact('products'));
+    }
+
     public function shopPageIndex()
     {
         $products = Product::orderByDesc('id')->paginate(10);

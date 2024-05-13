@@ -5,10 +5,10 @@
     <section class="container-fluid my-5">
         <div class="row">
             <div class="col-md-8 ">
-                <div class="product-search d-flex justify-content-end my-5">
-                    <form class="form-inline  my-lg-0" action="{{route('product.search')}}" method="POST">
+                <div class="product-search d-flex justify-content-center my-5">
+                    <form class="form-inline my-lg-0 w-100 text-center d-block" action="{{route('product.search')}}" method="POST">
                         @csrf
-                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2 w-75" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
@@ -17,7 +17,7 @@
                     style="margin: 20px 0px">
                   
                    @foreach($products as $product)
-                    <div class="card" style="width: 15rem; height: 22rem; margin: 10px 5px;">
+                    <div class="card" style="width: 14rem; height: 22rem; margin: 10px 5px;">
                        @if($product->image)
                             <img src="{{$product->image}}" class="card-img-top" alt="product" style="    width: 100%;
                             height: 200px;

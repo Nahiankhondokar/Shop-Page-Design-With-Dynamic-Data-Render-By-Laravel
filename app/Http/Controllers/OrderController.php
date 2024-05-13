@@ -10,6 +10,12 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        $orders = Order::with('orderDetails')->orderByDesc('id')->paginate(10);
+        return view('layouts.order', compact('orders'));
+    }
+
     public function store(Request $request)
     {
         return DB::transaction(function() use ($request){
