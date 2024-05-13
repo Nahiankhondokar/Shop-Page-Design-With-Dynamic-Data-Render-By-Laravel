@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
-use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use App\Models\ProductVariations;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -21,8 +19,13 @@ class ProductController extends Controller
     public function shopPageIndex()
     {
         $products = Product::orderByDesc('id')->paginate(10);
+        $products->getCollection()->transform(function ($product) {
+            $product->custom_qty = 1;
+            return $product;
+        });
+    
         return view('layouts.shop', [
-            'products'  => ProductResource::collection($products)
+            'products'  => $products
         ]);
     }
 
@@ -30,15 +33,17 @@ class ProductController extends Controller
     {
         return DB::transaction(function () use ($request){
 
-            // discount calculation
-            $discountAmount = $request->regular_price * $request->discount / 100;
-            $taxAmount = $request->regular_price * $request->tax / 100;
-
             // price calculation
             if(!$request->selling_price){
+                // discount calculation
+                $discountAmount = $request->regular_price * $request->discount / 100;
+                $taxAmount = $request->regular_price * $request->tax / 100;
                 $price = ($request->regular_price - $discountAmount) - $taxAmount;
+               
             }else {
                 $price = $request->regular_price;
+                $discountAmount = 00;
+                $taxAmount = 00;
             }
 
             $product = new Product();

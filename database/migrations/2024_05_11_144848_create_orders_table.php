@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('amount');
             $table->integer('discount')->nullable();
             $table->integer('tax')->nullable();
-            $table->integer('product_qty');
             $table->string('order_status')
                 ->default('pending')
                 ->comment('pending,confirmed,follow_up,shipped,delivery,returned,cancel');

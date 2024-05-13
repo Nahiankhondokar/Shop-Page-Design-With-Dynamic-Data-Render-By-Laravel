@@ -14,6 +14,7 @@
 
                 <div class="product-items d-flex justify-content-start align-item-center flex-wrap"
                     style="margin: 20px 0px">
+                  
                    @foreach($products as $product)
                     <div class="card" style="width: 15rem; height: 22rem; margin: 10px 5px;">
                        @if($product->image)
@@ -39,7 +40,7 @@
                                     <p class="card-text font-weight-bold" >$ {{$product->regular_price}}</p>
                                 @endif
                             </div>
-                            <a href="javascript:void(0)" class="btn btn-primary d-block addToCartBtn" style="background: #6ac88a; border:none;" data-product="" id="">Add To Cart</a>
+                            <a href="javascript:void(0)" class="btn btn-primary d-block addToCartBtn" style="background: #6ac88a; border:none;" data-product="{{$product}}" id="">Add To Cart</a>
                         </div>
                     </div>
                    @endforeach
@@ -82,7 +83,7 @@
                                     justify-content: space-between;
                                     font-weight: 700;
                                 ">
-                                    <div class="title">Discount <small>(already minus)</small>: </div>
+                                    <div class="title">Discount <small>(already minus from product price)</small>: </div>
                                     <input type="text" readonly value="00" name="discount" class="amount" style="
                                         border: none;
                                         text-align: right;
@@ -96,7 +97,7 @@
                                     justify-content: space-between;
                                     font-weight: 700;
                                     ">
-                                    <div class="title">Tax <small>(already minus)</small> : </div>
+                                    <div class="title">Tax <small>(already minus from product price)</small> : </div>
                                     <input type="text" readonly value="00" name="tax" class="amount" style="
                                     border: none;
                                     text-align: right;
