@@ -39,8 +39,8 @@
                         <td>{{$order->phone}}</td>
                         <td>{{$order->order_no}}</td>
                         <td>{{$order->amount}}</td>
-                        <td>{{$order->discount}}</td>
-                        <td>{{$order->tax}}</td>
+                        <td>{{$order->discount ?? "None"}}</td>
+                        <td>{{$order->tax ?? "None"}}</td>
                         <td>{{$order->created_at->format('d m y')}}</td>
                         <td>{{$order->orderDetails[$index]->product_qty ?? "None"}}</td>
                         <td>

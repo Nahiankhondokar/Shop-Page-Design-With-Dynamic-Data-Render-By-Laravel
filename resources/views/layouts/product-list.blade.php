@@ -30,8 +30,8 @@
                             <td>{{$product->sku}}</td>
                             <td>{{$product->selling_price}}</td>
                             <td>{{$product->regular_price}}</td>
-                            <td>{{$product->discount}}</td>
-                            <td>{{$product->tax}}</td>
+                            <td>{{$product->discount ?? "None"}}</td>
+                            <td>{{$product->tax ?? "None"}}</td>
                             <td>{{$product->quantity}}</td>
                             <td>
                                 <a href="{{route('product.delete', $product->id)}}" class="btn btn-sm btn-danger">Remove</a>
