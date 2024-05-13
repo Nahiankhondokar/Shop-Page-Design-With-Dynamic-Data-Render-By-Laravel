@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
 
-        {{-- Products section --}}
+    {{-- Products section --}}
     <section class="container-fluid my-5">
         <div class="row">
             <div class="col-md-8 ">
@@ -81,10 +81,18 @@
                                     </tr>
                                 </thead>
                                 <tbody id="cartItemLoad">
-                                   
+                                    
+                                   <tr class="notCartItem">
+                                    <td colspan="4"><p style="
+                                        color: red;
+                                        font-weight: bold;
+                                        text-align: center;
+                                    ">Not cart items</p></td>
+                                   </tr>
                                 </tbody>
 
                                 
+                                    
                             </table>
                             <hr>
                             <div class="product-price-details">

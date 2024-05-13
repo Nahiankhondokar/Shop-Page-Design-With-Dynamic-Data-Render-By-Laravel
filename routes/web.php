@@ -34,3 +34,4 @@ Route::get('product-value-get-unit-wise/{id}', [ProductVariationController::clas
 Route::post('order-store/', [OrderController::class, "store"])->name('order.store');
 Route::get('order-list/', [OrderController::class, "index"])->name('order.list');
 Route::get('order-delete/{id}', [OrderController::class, "delete"])->name('order.delete');
+Route::post('order-search/', [OrderController::class, "search"])->name('order.search');

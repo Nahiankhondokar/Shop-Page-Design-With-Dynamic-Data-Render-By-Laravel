@@ -7,6 +7,15 @@
             <div class="col-md-12">
                 
                 <h3 class="text-center">Order List</h3>
+                <hr>
+                <form action="{{route('order.search')}}" method="POST">
+                  @csrf
+                  <div class="date-picker" style="display: flex; gap: 10px; justify-content: center; margin: 10px 0px">
+                    <input type="date" class="form-control w-25" name="start_date">
+                    <input type="date" class="form-control w-25" name="end_date">
+                    <button type="submit" class="btn btn-sm btn-info">Search</button>
+                  </div>
+                </form>
                 <table class="table table-striped">
                     <thead>
                       <tr>
@@ -18,6 +27,7 @@
                         <th scope="col">Discount</th>
                         <th scope="col">Tax</th>
                         <th scope="col">QTY</th>
+                        <th scope="col">Create Date</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -31,7 +41,8 @@
                         <td>{{$order->amount}}</td>
                         <td>{{$order->discount}}</td>
                         <td>{{$order->tax}}</td>
-                        <td>{{$order->orderDetails[$index]->product_qty}}</td>
+                        <td>{{$order->created_at->format('d m y')}}</td>
+                        <td>{{$order->orderDetails[$index]->product_qty ?? "None"}}</td>
                         <td>
                             <a href="{{route('order.delete', $order->id)}}" class="btn btn-sm btn-danger">Remove</a>
                         </td>

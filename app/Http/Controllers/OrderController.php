@@ -6,6 +6,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -47,5 +48,17 @@ class OrderController extends Controller
     {
         Order::find($id)->delete();
         return redirect()->back();
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->all());
+        $orders = Order::query()
+        ->with('orderDetails')
+        ->whereBetween('created_at', [$request->start_date, Carbon::parse($request->end_date)->addDay()])
+        ->orderByDesc('id')
+        ->paginate(10);
+
+        return view('layouts.order', compact('orders'));
     }
 }

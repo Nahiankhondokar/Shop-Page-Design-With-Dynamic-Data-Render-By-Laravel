@@ -95,7 +95,7 @@
                     totalAmount += parseFloat(eachProdcutQtyWisePrice);
                     taxAmount += parseFloat(data.tax);
                     discountAmount += parseFloat(data.discount);
-                   
+
                     cartItemsDisplay.append(`
                     <tr>
                         <td style="width: 55%">
@@ -132,6 +132,7 @@
             // Add to cart
             $('.addToCartBtn').click(function() {
                 $(".customer-details" ).removeClass('d-none');
+                $(".notCartItem" ).addClass('d-none');
                 const cartArr = [];
                 const productData = $(this).data('product');
                 const cartItems = JSON.parse(localStorage.getItem('cart'));
@@ -198,6 +199,7 @@
         });
 
     </script>
+
 </body>
 
 </html>
