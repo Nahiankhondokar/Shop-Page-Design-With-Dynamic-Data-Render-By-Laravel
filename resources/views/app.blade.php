@@ -104,7 +104,7 @@
                                     style="width: 40px;
                                     height: 40px;
                                     border-radius: 5px;"
-                                    src="${data.image}"
+                                    src="${(data.image) ? data.image : "{{asset('/')}}media/no-img.jpg"}"
                                     alt="">
                                 <p class="font-weight-bold" style="padding: 0px; margin:0px;">${data.product_name}</p>
                             </div>

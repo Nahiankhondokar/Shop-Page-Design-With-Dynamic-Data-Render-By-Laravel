@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Models\Order;
 use App\Models\OrderDetails;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class OrderController extends Controller
         return view('layouts.order', compact('orders'));
     }
 
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
         return DB::transaction(function() use ($request){
             $order = new Order();

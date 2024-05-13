@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light " style="background: #6ac88a">
-    <div class="container-fluid">
-        <a class="navbar-brand font-weight-bold" href="#">Logo</a>
+    <div class="container-fluid" style="
+        display: flex;
+        flex-direction: column;
+    ">
+        <img src="{{asset('/')}}media/logo.png" width="50" alt="">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">

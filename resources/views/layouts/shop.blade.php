@@ -5,6 +5,16 @@
     <section class="container-fluid my-5">
         <div class="row">
             <div class="col-md-8 ">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <p><strong>Opps Something went wrong</strong></p>
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="product-search d-flex justify-content-center my-5">
                     <form class="form-inline my-lg-0 w-100 text-center d-block" action="{{route('product.search')}}" method="POST">
                         @csrf
@@ -15,7 +25,7 @@
 
                 <div class="product-items d-flex justify-content-start align-item-center flex-wrap"
                     style="margin: 20px 0px">
-                  
+
                    @foreach($products as $product)
                     <div class="card" style="width: 14rem; height: 22rem; margin: 10px 5px;">
                        @if($product->image)
