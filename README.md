@@ -12,10 +12,19 @@ At first, we have to download this file. then run to local machine. instructions
    - Run php artisan db:seed to run seeders
    - Run php artisan serve
   
-This is an application where we can contact with candidate & hire them. The company have to cost 5 coins to contact with a single candidate & send an email to candidate. The company can not contact without atleast 5 coins.
- 
-After the contact with candidates company can hire them. Compnay can only hire a candidate, if company contact before with the candidate. After hiring the companay will get back the 5 coins what the company cost for contact & also the specific cadidate will get the `hired batch`. Candidate will get a confirmation email after hiring.
-
+This is an order management project from where we can do a few things as per your requirements. The features added are given below,
+- Add product
+- Add a single variant with each product
+- We can add variant price
+- Shop page where all products will be showing with pagination.
+- Add to cart system by jQuery
+- Price will update based on quantity changed
+- Delete cart item
+- Place new order
+- Shop page product search by product name & sku
+- Show all product list & Order list with pagination.
+- we can remove single product & single order.
+- 
  
  
  
