@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('sku');
             $table->string('selling_price')->nullable();
             $table->string('regular_price');
-            $table->string('tax')->nullable();
-            $table->string('discount')->nullable();
+            $table->string('tax')->default(0);
+            $table->string('discount')->default(0);
             $table->string('quantity')->default(0);
             $table->string('variants')->nullable();
             $table->string('image')->nullable();

@@ -52,7 +52,6 @@ class OrderController extends Controller
 
     public function search(Request $request)
     {
-        // dd($request->all());
         $orders = Order::query()
         ->with('orderDetails')
         ->whereBetween('created_at', [$request->start_date, Carbon::parse($request->end_date)->addDay()])

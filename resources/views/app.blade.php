@@ -125,8 +125,8 @@
 
                 // pricing amounts show
                 $('.sub-total input.amount').val('$'+ totalAmount.toFixed(2));
-                $('.product-discount input.amount').val('$'+ discountAmount.toFixed(2));
-                $('.product-tax input.amount').val('$'+ taxAmount.toFixed(2));
+                $('.product-discount input.amount').val('$'+ discountAmount.toFixed(2) );
+                $('.product-tax input.amount').val('$'+ taxAmount.toFixed(2) );
             }
 
             // Add to cart
