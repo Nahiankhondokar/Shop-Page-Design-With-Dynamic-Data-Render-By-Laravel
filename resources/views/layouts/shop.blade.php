@@ -6,8 +6,9 @@
         <div class="row">
             <div class="col-md-8 ">
                 <div class="product-search d-flex justify-content-end my-5">
-                    <form class="form-inline  my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline  my-lg-0" action="{{route('product.search')}}" method="POST">
+                        @csrf
+                        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>

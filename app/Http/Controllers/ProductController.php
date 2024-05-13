@@ -6,6 +6,7 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 use App\Models\ProductUnit;
 use App\Models\ProductVariations;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -87,5 +88,24 @@ class ProductController extends Controller
 
             return redirect()->route('product')->with('product', 'Produdct added successfully');
         });
+    }
+
+    public function search(Request $request)
+    {
+        $searchData = '%'.$request->search.'%';
+        $products = Product::query()
+        ->where('product_name', 'LIKE', $searchData)
+        ->orWhere('sku', $searchData)
+        ->orderByDesc('id')
+        ->paginate(10);
+
+        $products->getCollection()->transform(function ($product) {
+            $product->custom_qty = 1;
+            return $product;
+        });
+        
+        return view('layouts.shop', [
+            'products'  => $products
+        ]);
     }
 }

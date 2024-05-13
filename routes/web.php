@@ -21,6 +21,7 @@ Route::get('/', function(){
 });
 Route::get('product/', [ProductController::class, "index"])->name('product');
 Route::post('product/add', [ProductController::class, "store"])->name('product.add');
+Route::post('product-search/', [ProductController::class, "search"])->name('product.search');
 Route::get('shop/', [ProductController::class, "shopPageIndex"])->name('shop');
 
 // product variations added
