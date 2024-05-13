@@ -10,8 +10,6 @@ At first, we have to download this file. then run to local machine. instructions
    - Run php artisan key:generate
    - Run php artisan migrate
    - Run php artisan db:seed to run seeders
-   - Run npm install
-   - Run npm run dev
    - Run php artisan serve
   
 This is an application where we can contact with candidate & hire them. The company have to cost 5 coins to contact with a single candidate & send an email to candidate. The company can not contact without atleast 5 coins.
